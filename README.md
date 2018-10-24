@@ -1,24 +1,47 @@
-# README
+# Création de THE HACKING PINTEREST
+Contributeurs SAMTHP & HERVELEE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Après téléchargement du repo, lancer**
 
-Things you may want to cover:
+```bundle install```  
+```rails db:migrate```  
+```rails db:seed```  
 
-* Ruby version
+Accès à la console pour vérifier la structure de la BDD
+```rails console```
 
-* System dependencies
 
-* Configuration
+## Résumé du projet
+- Création d'un message board où les utilisateurs peuvent poster des liens
+- Les autres utilisateurs peuvent commenter les liens soumis, ou commenter les commentaires
+- Afin de hierarchiser les commentaires de commentaires, il suffit de créer une autre table de commentaires de commentaires, et il faudra ajouter les clés étrangères d'utilisateur et de la première table de commentaire. 
 
-* Database creation
+## Structure de la BDD
 
-* Database initialization
+### Models 
+- User
+- Lien
+- Commentary
+- CommentToCommentary
 
-* How to run the test suite
+### Colonnes de chaque table
+> ```timestamps``` est présent dans chaque table sous la forme  
+> ```t.datetime "created_at", null: false```  
+> ```t.datetime "updated_at", null: false```   
 
-* Services (job queues, cache servers, search engines, etc.)
+* **table** ```users```
+    * "name" (string)
 
-* Deployment instructions
+* **table** ```liens```
+    * "url" (string)
+    * "user_id" **(foreign key)**
 
-* ...
+* **table** ```commentaries```
+    * "content" (text)
+    * "user_id" **(foreign key)**
+    * "lien_id" **(foreign key)**
+
+* **table** ```comment_to_commentaries```
+    * "content" (text)
+    * "user_id" **(foreign key)**
+    * "commentary_id" **(foreign key)**
